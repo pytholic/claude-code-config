@@ -110,6 +110,7 @@ def user() -> User:
 - Fixtures for shared setup (function scope default)
 - Dependency injection over mocking when possible
 - One logical assertion group per test
+- Never import any function or variable from conftest file. Always use fixture for shared setup.
 
 ## Coverage Strategy
 
