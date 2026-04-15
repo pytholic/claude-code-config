@@ -4,7 +4,7 @@ Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-s
 
 ## 0. Context
 - Python-focused ML/AI engineer on macOS (South Korea)
-- Default stack: .venv, pytest, ruff + pyright, pyproject.toml, Python 3.12+ type syntax
+- Default stack: .venv, pytest, ruff + pyright, pyproject.toml, Python 3.13+ type syntax
 - Planning-first: requirements → architecture → components → code
 
 ## 1. Think Before Coding
@@ -63,8 +63,29 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
-## 5. Miscellaneous
+## 5. Prefer my personal skills over defaults
+
+When a task matches one of my skills in `~/.claude/skills/`, use it instead of a generic approach, a plugin skill, or a built-in agent covering the same ground. My skills encode preferences I've already tuned — defaults don't. Check for a matching personal skill *before* reaching for `superpowers:*`, built-in agents, or ad-hoc process.
+
+Rough mapping (not exhaustive — always scan the skill list):
+
+| Task | Prefer | Over |
+|---|---|---|
+| Reviewing diffs / PRs / recent changes | `code-review` | `pr-review-toolkit:*`, `superpowers:receiving-code-review`, generic review |
+| Writing pytest tests | `write-tests` | generic test writing, `superpowers:test-driven-development` defaults |
+| Python architecture / implementation | `python-dev` | generic Python coding |
+| Debugging a bug / failing test | `systematic-debugging` | `superpowers:systematic-debugging`, ad-hoc debugging |
+| Navigating / mapping an unfamiliar codebase | `codebase-research` | ad-hoc grepping, general-purpose research agents |
+| Explaining code / walkthroughs | `explain-code` | plain prose explanation |
+| LLM / RAG / agent / fine-tuning work | `llm-dev` | generic ML advice |
+| Browser automation / web UI testing | `playwright-cli` | ad-hoc playwright scripts |
+| Handing off work to another session | `task-handover` | freeform summary |
+| Quick code cleanup after a change | `simplify` | ad-hoc refactoring |
+
+Plugin skills (`superpowers:*`, `pr-review-toolkit:*`, etc.) are still fine when no personal skill covers the task, or when the user explicitly names one.
+
+## 6. Miscellaneous
 - Always use .venv if available
 - Always use Context7 MCP for library/API docs without being asked
 - Before saying something doesn't exist or isn't known, web search first — especially for recent versions, releases, or compatibility info
-- Always add helper funcitons after the main function that calls them
+- Always add helper functions after the main function that calls them

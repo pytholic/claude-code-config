@@ -111,15 +111,30 @@ def user() -> User:
 - Dependency injection over mocking when possible
 - One logical assertion group per test
 - Never import any function or variable from conftest file. Always use fixture for shared setup.
+- Use built-in fixtures where they fit: `tmp_path` for filesystem, `monkeypatch` for env/attr patching, `caplog` for log assertions, `capsys` for stdout/stderr.
+- **ALWAYS use `pytest-mock` (`mocker` fixture) for mocking — never `unittest.mock` directly.**
+
+```python
+# CORRECT - pytest-mock
+def test_something(mocker):
+    mock_fn = mocker.patch("module.ClassName.method", return_value="value")
+    mocker.patch.object(instance, "method", return_value="value")
+
+# INCORRECT - unittest.mock
+from unittest.mock import patch, MagicMock  # Don't do this
+with patch("module.fn") as mock_fn:  # Don't do this
+    ...
+```
 
 ## Coverage Strategy
 
-**Aim for 80%+ coverage of valuable code:**
-- 100% critical business logic
-- 100% error paths
-- Skip trivial code from coverage (`# pragma: no cover` sparingly)
+Coverage is a smell test, not a target. Chase *valuable* coverage, not a number:
+- Critical business logic and error paths: aim for full coverage.
+- Trivial code (dataclasses, constants, simple property access): skip. Use `# pragma: no cover` sparingly for unreachable branches.
+- If the project sets a `--cov-fail-under` threshold in `pyproject.toml`, match it. Don't invent one.
+
 ```bash
-pytest --cov=src --cov-report=term-missing --cov-fail-under=80
+pytest --cov=src --cov-report=term-missing
 ```
 
 ## Organization

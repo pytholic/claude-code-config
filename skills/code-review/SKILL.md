@@ -46,7 +46,7 @@ Thorough code review of recent changes. Focuses on what matters: correctness, de
 
 ### 2d. Python-Specific
 
-- Type hints on all public interfaces (Python 3.12+ syntax: `str | None`, not `Optional[str]`)
+- Type hints on all public interfaces (Python 3.13+ syntax: `str | None`, not `Optional[str]`)
 - Functions under 30 lines; if longer, suggest decomposition
 - Composition over inheritance
 - Context managers for resources, generators for memory efficiency
@@ -99,5 +99,6 @@ Output a structured review using this format:
 - Be specific: reference exact file and line, show the problematic code, show the fix.
 - Do not nitpick formatting that ruff would auto-fix.
 - Do not suggest adding comments/docstrings to code you didn't write.
+- Do not recommend speculative abstractions or "for future flexibility" refactors — respect YAGNI.
 - If no issues found, say so. Don't invent problems.
-- For the checklist, see [checklist.md](checklist.md).
+- For the detailed checklist, see [checklist.md](checklist.md).

@@ -6,11 +6,11 @@
     ],
     "ask": []
   },
+  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "bash /Users/lunit_haseebraja/.claude/statusline-command.sh"
   },
-  "model": "opusplan",
   "enabledPlugins": {
     "pr-review-toolkit@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
@@ -29,5 +29,6 @@
         "repo": "anthropics/skills"
       }
     }
-  }
+  },
+  "effortLevel": "medium"
 }
