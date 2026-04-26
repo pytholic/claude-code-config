@@ -16,6 +16,7 @@ Before implementing:
 - If multiple interpretations exist, present them - don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
 - If something is unclear, stop. Name what's confusing. Ask.
+- Always plan in top-down manner. High level design first, then break it down into smaller parts.
 
 ## 2. Simplicity First
 

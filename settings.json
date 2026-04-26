@@ -6,6 +6,7 @@
     ],
     "ask": []
   },
+  "model": "opusplan",
   "statusLine": {
     "type": "command",
     "command": "bash /Users/lunit_haseebraja/.claude/statusline-command.sh"
@@ -27,8 +28,13 @@
         "source": "github",
         "repo": "anthropics/skills"
       }
+    },
+    "pytholic-skills": {
+      "source": {
+        "source": "github",
+        "repo": "pytholic/claude-skills"
+      }
     }
   },
-  "effortLevel": "medium",
-  "model": "opusplan"
+  "effortLevel": "medium"
 }
