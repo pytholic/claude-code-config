@@ -90,3 +90,35 @@ Plugin skills (`superpowers:*`, `pr-review-toolkit:*`, etc.) are still fine when
 - Always use Context7 MCP for library/API docs without being asked
 - Before saying something doesn't exist or isn't known, web search first — especially for recent versions, releases, or compatibility info
 - Always add helper functions after the main function that calls them
+
+## 7. Working Memory (.ai/ directory)
+
+Projects may have a `.ai/` directory that serves as shared working memory between you and the user. It solves the "where were we?" problem across sessions. This is for non-trivial, multi-step, or multi-session work — not for quick fixes or one-off questions.
+
+**Bootstrapping (existing projects without .ai/):**
+- If the user asks to "set up working memory", "add .ai", or you begin a multi-session task and no `.ai/` directory exists, create it with:
+  - `.ai/status.md` — pull the project name/description from CLAUDE.md or README. Empty Active/Blocked/Completed sections.
+  - `.ai/decisions.md` — the template header with the ADR format in an HTML comment.
+  - `.ai/tasks/.gitkeep` — empty directory, ready for on-demand task files.
+- If prior plan files exist elsewhere (e.g. `.claude/*.md` plans), offer to migrate them into `.ai/tasks/`.
+- Use the templates from the `python-project-scaffold` skill as reference.
+
+**Session start (multi-session tasks only):**
+- Read `.ai/status.md` to understand what's active, blocked, and done.
+- Open the relevant task file linked from status.md before asking "where were we?"
+
+**During execution:**
+- For new non-trivial work: create `.ai/tasks/<task-name>.md` with Context, Plan, Notes/Findings, and Open Questions sections. Add a link to it in `status.md` under Active.
+- Update task file checklists as steps complete.
+- Record discoveries in the Notes/Findings section — things learned during execution that aren't in the plan.
+
+**Design decisions:**
+- When making a strategic or architectural choice, append to `.ai/decisions.md`.
+- Use the format: Context, Choice, Why, Rejected (what alternatives were ruled out and why).
+- Decisions are append-only. Never edit or remove past entries.
+
+**Wrap-up:**
+- Move completed tasks to "Completed" in `status.md` with the date.
+- Update the task file status to `Done (YYYY-MM-DD)`.
+
+**Skip all of this for:** trivial bug fixes, formatting changes, single-file edits, or anything completable in one short session. Use judgment.
