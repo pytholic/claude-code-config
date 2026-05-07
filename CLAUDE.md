@@ -91,6 +91,7 @@ Plugin skills (`superpowers:*`, `pr-review-toolkit:*`, etc.) are still fine when
 - Always use Context7 MCP for library/API docs without being asked
 - Before saying something doesn't exist or isn't known, web search first — especially for recent versions, releases, or compatibility info
 - Always add helper functions after the main function that calls them
+- Do not try to resolve all the pyright stub warnings for external dependencies. It's a waste of time and adds noise. Just ignore them.
 
 ## 7. HAC — Human-Agent Context (.hac/ directory)
 
